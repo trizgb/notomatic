@@ -3,7 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "react-app"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "react-app",
+    "prettier"
+  ],
   "globals": {
     "process": "readonly"
   },
@@ -11,9 +16,10 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "prettier/prettier": "error"
   }
 }
