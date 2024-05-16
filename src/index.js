@@ -5,11 +5,17 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { Home, NoteCreate, NoteDetail } from 'pages'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: 'note/:id', element: <NoteDetail /> },
+      { path: 'create', element: <NoteCreate /> },
+    ],
   },
 ])
 
