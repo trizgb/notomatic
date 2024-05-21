@@ -1,0 +1,17 @@
+.button {
+  border: none;
+  display: flex;
+  align-items: center;
+  border-radius: 24px;
+  padding: 12px 32px;
+  background: var(--notoBlue);
+  color: var(--notoWhite);
+  font-weight: 500;
+}
+
+.buttton:disabled,
+.button--disabled {
+  opacity: 0.7;
+  pointer-events: none;
+  user-select: none;
+}
