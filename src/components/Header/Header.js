@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Button } from 'components/Button'
 
-import logo from '../../assets/icons/note-stack.png'
+import logo from '../../assets/icons/logo.png'
 
 import './Header.css'
 
