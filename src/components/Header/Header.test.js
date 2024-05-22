@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Header from './Header'
 
@@ -13,23 +13,25 @@ describe('Header', () => {
     expect(screen.getByText('Notomatic')).toBeInTheDocument()
   })
 
-  it('renders create note button', () => {
+  it('renders New note button and it can be clicked', () => {
     render(
       <MemoryRouter>
         <Header />
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('New note +')).toBeInTheDocument()
+    const createButton = screen.getByText('header.create-button +')
+    expect(createButton).toBeInTheDocument()
+    fireEvent.click(createButton)
   })
 
-  it.skip('renders language selector', () => {
+  it('renders language selector', () => {
     render(
       <MemoryRouter>
         <Header />
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('ES')).toBeInTheDocument()
+    expect(screen.getByAltText('header.alt-uk-flag')).toBeInTheDocument()
   })
 })

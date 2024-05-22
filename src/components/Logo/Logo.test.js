@@ -6,6 +6,6 @@ describe('Logo', () => {
     render(<Logo />)
 
     expect(screen.getByText('Notomatic')).toBeInTheDocument()
-    expect(screen.getByAltText(`Notomatic's brand logo`)).toBeInTheDocument()
+    expect(screen.getAllByAltText('header.alt-logo'))
   })
 })
