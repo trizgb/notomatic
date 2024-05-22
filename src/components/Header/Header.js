@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Logo } from 'components/Logo'
 import { Button } from 'components/Button'
 
 import './Header.css'
 
 const Header = () => {
+  const navigate = useNavigate()
+
   return (
     <header className="header">
       <div className="header-wrapper">
@@ -12,7 +14,7 @@ const Header = () => {
           <Logo />
         </Link>
         <div className="header-actions">
-          <Button href="/create">New note +</Button>
+          <Button onClick={() => navigate('/create')}>New note +</Button>
           <button onClick={() => console.log('change language')}>ES</button>
         </div>
       </div>

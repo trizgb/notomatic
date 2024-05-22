@@ -1,10 +1,9 @@
 import Proptypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import './Button.css'
 
-const Button = ({ children, type = 'button', onClick, href, isDisabled }) => {
-  return !href ? (
+const Button = ({ children, type = 'button', onClick, isDisabled }) => {
+  return (
     <button
       className={`button ${isDisabled ? 'button--disabled' : ''}`}
       type={type}
@@ -13,13 +12,6 @@ const Button = ({ children, type = 'button', onClick, href, isDisabled }) => {
     >
       {children}
     </button>
-  ) : (
-    <Link
-      className={`button ${isDisabled ? 'button--disabled' : ''}`}
-      to={href}
-    >
-      {children}
-    </Link>
   )
 }
 
