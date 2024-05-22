@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <div className="logo">
       <div className="logo-wrapper">
-        <img src={logo} alt="Logo's brand" />
+        <img src={logo} alt="Notomatic's brand logo" />
         <h1>Notomatic</h1>
       </div>
       <p>Manage your notes</p>
