@@ -9,23 +9,19 @@ const LanguageSelector = () => {
   const { t, i18n } = useTranslation(['translation'])
   const selectedLanguage = i18n.language
 
-  const changeLanguage = e => {
-    i18n.changeLanguage(e.currentTarget.id)
-  }
-
   return (
     <div className="language-selector">
-      {selectedLanguage !== 'en' && (
+      {selectedLanguage === 'en' && (
         <LanguageButton
           id="en"
-          onClick={changeLanguage}
+          onClick={() => i18n.changeLanguage('es')}
           img={{ src: flagUk, alt: t('header.alt-uk-flag') }}
         />
       )}
-      {selectedLanguage !== 'es' && (
+      {selectedLanguage === 'es' && (
         <LanguageButton
           id="es"
-          onClick={changeLanguage}
+          onClick={() => i18n.changeLanguage('en')}
           img={{ src: flagSpain, alt: t('header.alt-spain-flag') }}
         />
       )}

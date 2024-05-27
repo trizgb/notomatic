@@ -11,7 +11,7 @@ const Logo = () => {
         <img src={logo} alt={t('header.alt-logo')} />
         <h1>Notomatic</h1>
       </div>
-      <p>Manage your notes</p>
+      <p>{t('header.subtitle-logo')}</p>
     </div>
   )
 }

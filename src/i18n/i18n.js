@@ -1,21 +1,17 @@
-import { createInstance } from 'i18next'
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import es from './locales/es.json'
 
-const i18n = createInstance({
-  fallbackLng: 'en',
-  debug: true,
-
-  interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
-
-  resources: {
-    en: en,
-    es: es,
-  },
-})
-
-i18n.init()
+i18n
+  .use(initReactI18next) // bind react-i18next to the instance
+  .init({
+    fallbackLng: 'en',
+    debug: true,
+    resources: {
+      en: en,
+      es: es,
+    },
+  })
 
 export default i18n
