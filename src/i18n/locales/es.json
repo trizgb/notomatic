@@ -6,6 +6,11 @@
       "create-button": "Nueva nota",
       "alt-spain-flag": "Bandera de España",
       "alt-uk-flag": "Bandera de Reino Unido"
+    },
+    "note-card": {
+      "aria-delete-button": "Eliminar nota",
+      "alt-trash-grey": "Cubo de basura gris",
+      "alt-trash-red": "Cubo de basura rojo"
     }
   }
 }
