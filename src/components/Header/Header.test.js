@@ -40,7 +40,7 @@ describe('Header', () => {
   })
 
   // PARA VER
-  it.skip('render Logo and it can be clicked', () => {
+  it.only('render Logo and it can be clicked', () => {
     render(
       <MemoryRouter>
         <Header />
