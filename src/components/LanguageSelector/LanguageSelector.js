@@ -13,6 +13,7 @@ const LanguageSelector = () => {
     <div className="language-selector">
       {selectedLanguage === 'en' && (
         <LanguageButton
+          ariaLabel="english button"
           id="en"
           onClick={() => i18n.changeLanguage('es')}
           img={{ src: flagUk, alt: t('header.alt-uk-flag') }}
@@ -20,6 +21,7 @@ const LanguageSelector = () => {
       )}
       {selectedLanguage === 'es' && (
         <LanguageButton
+          ariaLabel="spanish button"
           id="es"
           onClick={() => i18n.changeLanguage('en')}
           img={{ src: flagSpain, alt: t('header.alt-spain-flag') }}

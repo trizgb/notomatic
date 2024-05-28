@@ -11,7 +11,7 @@ const Header = () => {
   const { t } = useTranslation(['translation'])
 
   return (
-    <header className="header">
+    <header className="header" aria-label="app header">
       <div className="header-wrapper">
         <Link to="/">
           <Logo />
