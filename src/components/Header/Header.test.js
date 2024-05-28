@@ -9,6 +9,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }))
 
+let mockedLanguage = 'en'
 const mockedChangeLanguage = jest.fn()
 
 jest.mock('react-i18next', () => ({
@@ -16,7 +17,9 @@ jest.mock('react-i18next', () => ({
     return {
       t: str => str,
       i18n: {
-        language: 'en',
+        get language() {
+          return mockedLanguage
+        },
         changeLanguage: mockedChangeLanguage,
       },
     }
@@ -36,9 +39,10 @@ describe('Header', () => {
     ).toBeInTheDocument()
   })
 
+  // PARA VER
   it.skip('render Logo and it can be clicked', () => {
     render(
-      <MemoryRouter initialEntries={['/create']}>
+      <MemoryRouter>
         <Header />
       </MemoryRouter>,
     )
@@ -47,6 +51,7 @@ describe('Header', () => {
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/')
     fireEvent.click(link)
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/')
   })
 
   it('renders New note button and it can be clicked', () => {
@@ -63,7 +68,7 @@ describe('Header', () => {
   })
 
   it('renders language selector and it can be clicked', () => {
-    render(
+    const { rerender } = render(
       <MemoryRouter>
         <Header />
       </MemoryRouter>,
@@ -72,6 +77,18 @@ describe('Header', () => {
     const englishButton = screen.getByRole('button', { name: 'english button' })
     expect(englishButton).toBeInTheDocument()
     fireEvent.click(englishButton)
+    mockedLanguage = 'es'
     expect(mockedChangeLanguage).toHaveBeenCalledWith('es')
+
+    rerender(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    )
+
+    expect(screen.getByAltText('header.alt-spain-flag')).toHaveAttribute(
+      'src',
+      'flag-spain.png',
+    )
   })
 })
