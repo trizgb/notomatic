@@ -1,0 +1,16 @@
+{
+  "translation": {
+    "header": {
+      "alt-logo": "Notomatic's brand logo",
+      "subtitle-logo": "Manage your notes",
+      "create-button": "New note",
+      "alt-spain-flag": "Spain flag",
+      "alt-uk-flag": "Uk flag"
+    },
+    "note-card": {
+      "aria-delete-button": "Delete note",
+      "alt-trash-grey": "Trash can grey",
+      "alt-trash-red": "Trash can red"
+    }
+  }
+}

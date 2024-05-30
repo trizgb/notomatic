@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import './index.css'
+import './i18n/i18n'
+
 import App from './App'
-import reportWebVitals from './reportWebVitals'
 import { Home, NoteCreate, NoteDetail } from 'pages'
+
+import reportWebVitals from './reportWebVitals'
+import './styles/index.css'
 
 const router = createBrowserRouter([
   {
