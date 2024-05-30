@@ -1,6 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { NotesList } from 'components/NotesList'
+import { useEffect } from 'react'
+import { getAll } from '../redux/reducer'
+import getAllNotes from 'api/fetchAll'
 
 const Home = () => {
+  const { name } = useSelector(state => state.notes)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllNotes())
+  }, [dispatch])
+
+  console.log(name)
   const notes = [
     {
       id: '1',
