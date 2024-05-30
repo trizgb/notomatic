@@ -6,7 +6,7 @@ import './LanguageSelector.css'
 import LanguageButton from './LanguageButton'
 
 const LanguageSelector = () => {
-  const { t, i18n } = useTranslation(['translation'])
+  const { t, i18n } = useTranslation('translation')
   const selectedLanguage = i18n.language
 
   return (

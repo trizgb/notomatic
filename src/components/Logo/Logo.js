@@ -4,7 +4,7 @@ import logo from '../../assets/icons/logo.png'
 import './Logo.css'
 
 const Logo = () => {
-  const { t } = useTranslation(['translation'])
+  const { t } = useTranslation('translation')
   return (
     <div className="logo">
       <div className="logo-wrapper">

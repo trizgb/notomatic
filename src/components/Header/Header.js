@@ -8,7 +8,7 @@ import './Header.css'
 
 const Header = () => {
   const navigate = useNavigate()
-  const { t } = useTranslation(['translation'])
+  const { t } = useTranslation('translation')
 
   return (
     <header className="header" aria-label="app header">

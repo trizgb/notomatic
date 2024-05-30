@@ -38,7 +38,7 @@ const Home = () => {
   ]
 
   return (
-    <div>
+    <div data-testid="home">
       <NotesList notes={notes} />
     </div>
   )

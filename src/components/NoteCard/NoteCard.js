@@ -6,7 +6,7 @@ import trashRed from '../../assets/icons/trash-red.png'
 import './NoteCard.css'
 
 const NoteCard = ({ id, title, subtitle, content }) => {
-  const { t } = useTranslation(['translation'])
+  const { t } = useTranslation('translation')
 
   const handleClickDelete = e => {
     e.preventDefault()

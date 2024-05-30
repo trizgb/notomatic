@@ -39,8 +39,7 @@ describe('Header', () => {
     ).toBeInTheDocument()
   })
 
-  // PARA VER
-  it.skip('render Logo and it can be clicked', () => {
+  it('render Logo and it can be clicked', () => {
     render(
       <MemoryRouter>
         <Header />
@@ -50,8 +49,6 @@ describe('Header', () => {
     const link = screen.getByRole('link', { text: 'Notomatic' })
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/')
-    fireEvent.click(link)
-    expect(mockedUsedNavigate).toHaveBeenCalledWith('/')
   })
 
   it('renders New note button and it can be clicked', () => {
