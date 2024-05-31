@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const fetchAll = async () => {
+const getAllNotes = async () => {
   const data = await axios.get('http://localhost:3200/notes').then(response => {
     return response.data
   })
@@ -8,4 +8,4 @@ const fetchAll = async () => {
   return data
 }
 
-export default fetchAll
+export default getAllNotes

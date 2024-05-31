@@ -1,1 +1,1 @@
-export { default as fetchAll } from './fetchAll'
+export { default as getAllNotes } from './getAllNotes'
