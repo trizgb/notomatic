@@ -1,11 +1,9 @@
 import axios from 'axios'
 
 const getAllNotes = async () => {
-  const data = await axios.get('http://localhost:3200/notes').then(response => {
-    return response.data
-  })
+  const response = await axios.get('http://localhost:3200/notes')
 
-  return data
+  return response.data
 }
 
 export default getAllNotes
