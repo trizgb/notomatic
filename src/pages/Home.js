@@ -12,7 +12,7 @@ const Home = () => {
   }, [dispatch])
 
   return (
-    <div data-testid="home">
+    <div>
       <NotesList notes={notes} />
     </div>
   )

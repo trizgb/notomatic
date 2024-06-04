@@ -10,10 +10,10 @@ const notesSlice = createSlice({
   initialState: { data: [], loading: false, error: false },
   extraReducers: builder => {
     builder.addCase(fetchAll.pending, state => {
-      state.isLoading = true
+      state.loading = true
     })
     builder.addCase(fetchAll.fulfilled, (state, action) => {
-      state.isLoading = false
+      state.loading = false
       state.data = action.payload
     })
     builder.addCase(fetchAll.rejected, (state, action) => {
