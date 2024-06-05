@@ -23,7 +23,7 @@ const NoteCreate = () => {
   }
 
   return (
-    <div>
+    <section className="section-wrapper">
       <Form
         title={t('note-create.title')}
         submitText={t('form.submit-save')}
@@ -40,7 +40,7 @@ const NoteCreate = () => {
           onChange={handleChange}
         />
       </Form>
-    </div>
+    </section>
   )
 }
 

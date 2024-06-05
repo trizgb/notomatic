@@ -12,9 +12,9 @@ const Home = () => {
   }, [dispatch])
 
   return (
-    <div>
+    <section className="section-wrapper">
       <NotesList notes={notes} />
-    </div>
+    </section>
   )
 }
 
