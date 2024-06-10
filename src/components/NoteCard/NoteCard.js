@@ -2,6 +2,7 @@ import Proptypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import trashGrey from '../../assets/icons/trash-grey.png'
 import trashRed from '../../assets/icons/trash-red.png'
+
 import './NoteCard.css'
 
 const NoteCard = ({ id, title, subtitle, content }) => {
