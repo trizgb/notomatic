@@ -14,8 +14,6 @@ const NoteCreate = () => {
   const [titleError, setTitleError] = useState('')
   const [contentError, setContentError] = useState('')
 
-  console.log(title >= 3)
-
   const validate = () => {
     if (title) {
       if (title.length < 3) {
