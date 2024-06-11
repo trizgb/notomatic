@@ -22,6 +22,13 @@
       "textfield-error-min-chars": "The title must be at least 3 characters long",
       "textfield-error-max-chars": "The title can't exceed 20 characters",
       "textarea-error-min-chars": "The content must be at least 3 characters long"
+    },
+    "note-detail": {
+      "alt-pencil": "Edit note",
+      "alt-trash-black": "Delete note"
+    },
+    "common": {
+      "alt-not-found": "Page not found"
     }
   }
 }

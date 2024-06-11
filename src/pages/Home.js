@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <section className="section-wrapper">
-      <NotesList notes={notes} />
+      {notes.length && <NotesList notes={notes} />}
     </section>
   )
 }
