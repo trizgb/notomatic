@@ -48,8 +48,6 @@ const NoteCreate = () => {
     validate(form)
   }, [form])
 
-  console.log(form.title.length, form.content.length)
-
   return (
     <section className="section-wrapper">
       <Form
