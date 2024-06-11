@@ -9,44 +9,52 @@ import { TextField } from 'components/TextField'
 const NoteCreate = () => {
   const { t } = useTranslation('translation')
   const navigate = useNavigate()
-  const [form, setForm] = useState({ title: '', content: '' })
-  const [errors, setErrors] = useState({ title: '', content: '' })
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [titleError, setTitleError] = useState('')
+  const [contentError, setContentError] = useState('')
 
-  const validate = values => {
-    if (values.title) {
-      if (values.title.length < 3) {
-        setErrors({ ...errors, title: t('form.textfield-error-1') })
-      } else if (values.title.length > 3 && values.title.length < 20) {
-        setErrors({ ...errors, title: '' })
-      } else if (values.title.length > 20) {
-        setErrors({
-          ...errors,
-          title: t('form.textfield-error-2'),
-        })
+  console.log(title >= 3)
+
+  const validate = () => {
+    if (title) {
+      if (title.length < 3) {
+        setTitleError('form.textfield-error-min-chars')
+      } else if (title.length >= 3 && title.length < 20) {
+        setTitleError('')
+      } else if (title.length > 20) {
+        setTitleError('form.textfield-error-max-chars')
       }
     }
 
-    if (values.content) {
-      if (values.content.length < 3) {
-        setErrors({ ...errors, content: t('form.textarea-error-1') })
-      } else setErrors({ ...errors, content: '' })
+    if (content) {
+      if (content.length < 3) {
+        setContentError('form.textarea-error-min-chars')
+      } else setContentError('')
     }
   }
 
   const handleChange = e => {
-    setForm({ ...form, [e.currentTarget.name]: e.currentTarget.value })
+    if (e.currentTarget.name === 'title') {
+      setTitle(e.currentTarget.value)
+    }
+
+    if (e.currentTarget.name === 'content') {
+      setContent(e.currentTarget.value)
+    }
   }
 
   const handleSubmit = async () => {
     return await createNewNote({
-      title: form.title,
-      content: form.content,
+      title,
+      content,
     }).finally(() => navigate('/'))
   }
 
   useEffect(() => {
-    validate(form)
-  }, [form])
+    validate()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, content])
 
   return (
     <section className="section-wrapper">
@@ -55,23 +63,23 @@ const NoteCreate = () => {
         submitText={t('form.submit-save')}
         onSubmit={handleSubmit}
         isSubmitDisabled={
-          form.title === '' ||
-          form.content === '' ||
-          errors.title !== '' ||
-          errors.content !== ''
+          title === '' ||
+          content === '' ||
+          titleError !== '' ||
+          titleError !== ''
         }
       >
         <TextField
           label={t('form.textfield-label')}
           name="title"
           onChange={handleChange}
-          error={errors.title}
+          error={titleError !== '' ? t(titleError) : ''}
         />
         <TextArea
           label={t('form.textarea-label')}
           name="content"
           onChange={handleChange}
-          error={errors.content}
+          error={contentError !== '' ? t(contentError) : ''}
         />
       </Form>
     </section>

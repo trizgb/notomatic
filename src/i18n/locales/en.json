@@ -19,9 +19,9 @@
       "textfield-label": "Title",
       "textarea-label": "Content",
       "submit-save": "Save note",
-      "textfield-error-1": "The title must be at least 3 characters long",
-      "textfield-error-2": "The title can't exceed 20 characters",
-      "textarea-error-1": "The content must be at least 3 characters long"
+      "textfield-error-min-chars": "The title must be at least 3 characters long",
+      "textfield-error-max-chars": "The title can't exceed 20 characters",
+      "textarea-error-min-chars": "The content must be at least 3 characters long"
     }
   }
 }
