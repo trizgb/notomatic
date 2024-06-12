@@ -3,7 +3,7 @@ import { Button } from 'components/Button'
 
 import './Form.css'
 
-const Form = ({ title, children, submitText, onSubmit }) => {
+const Form = ({ title, children, submitText, onSubmit, isSubmitDisabled }) => {
   const handleSubmit = e => {
     e.preventDefault()
     onSubmit()
@@ -16,7 +16,11 @@ const Form = ({ title, children, submitText, onSubmit }) => {
         {children}
         {submitText && (
           <div className="form-submit">
-            <Button type="submit" onClick={handleSubmit}>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              isDisabled={isSubmitDisabled}
+            >
               {submitText}
             </Button>
           </div>
@@ -31,6 +35,7 @@ Form.propTypes = {
   children: PropTypes.node.isRequired,
   submitText: PropTypes.string,
   onSubmit: PropTypes.func,
+  isSubmitDisabled: PropTypes.bool,
 }
 
 export default Form

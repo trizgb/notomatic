@@ -18,7 +18,10 @@
     "form": {
       "textfield-label": "Título",
       "textarea-label": "Contenido",
-      "submit-save": "Guardar nota"
+      "submit-save": "Guardar nota",
+      "textfield-error-min-chars": "El título debe contener al menos 3 caracteres",
+      "textfield-error-max-chars": "El título no puede exceder de 20 caracteres",
+      "textarea-error-min-chars": "El contenido debe contener al menos 3 caracteres"
     }
   }
 }
