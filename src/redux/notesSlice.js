@@ -19,6 +19,7 @@ const notesSlice = createSlice({
     builder.addCase(fetchAll.fulfilled, (state, action) => {
       state.loading = false
       state.data = action.payload
+      state.error = null
     })
     builder.addCase(fetchAll.rejected, (state, action) => {
       state.loading = false
@@ -30,6 +31,7 @@ const notesSlice = createSlice({
     builder.addCase(fetchById.fulfilled, (state, action) => {
       state.loading = false
       state.data = action.payload
+      state.error = null
     })
     builder.addCase(fetchById.rejected, (state, action) => {
       state.loading = false

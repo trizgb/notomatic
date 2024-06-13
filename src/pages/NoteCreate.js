@@ -55,7 +55,7 @@ const NoteCreate = () => {
   }, [title, content])
 
   return (
-    <section className="section-wrapper">
+    <section className="section-wrapper" aria-label="Create section">
       <Form
         title={t('note-create.title')}
         submitText={t('form.submit-save')}

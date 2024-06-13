@@ -25,11 +25,11 @@ const NoteDetail = () => {
       {!error && note && (
         <Form title={note.title}>
           <div
+            className="flex-container"
             style={{
               position: 'absolute',
               top: '24px',
               right: '24px',
-              display: 'flex',
               gap: '24px',
             }}
           >
@@ -52,7 +52,7 @@ const NoteDetail = () => {
         </Form>
       )}
       {error && (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="flex-container">
           <img src={notFoundSvg} width="60%" alt={t('common.alt-not-found')} />
         </div>
       )}

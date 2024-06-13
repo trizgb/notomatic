@@ -22,3 +22,8 @@
 .icon {
   width: 18px;
 }
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
