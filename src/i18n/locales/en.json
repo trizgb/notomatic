@@ -25,7 +25,9 @@
     },
     "note-detail": {
       "alt-pencil": "Edit note",
-      "alt-trash-black": "Delete note"
+      "alt-trash-black": "Delete note",
+      "title": "Update note",
+      "update-alert": "The note has been updated"
     },
     "common": {
       "alt-not-found": "Page not found"
