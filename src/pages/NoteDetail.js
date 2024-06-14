@@ -24,15 +24,7 @@ const NoteDetail = () => {
     <section className="section-wrapper">
       {!error && note && (
         <Form title={note.title}>
-          <div
-            className="flex-container"
-            style={{
-              position: 'absolute',
-              top: '24px',
-              right: '24px',
-              gap: '24px',
-            }}
-          >
+          <div className="flex-container note-detail-actions">
             <button onClick={() => console.log('edit')}>
               <img
                 className="icon icon-pencil"
