@@ -18,3 +18,19 @@
   max-width: 1220px;
   width: 100%;
 }
+
+.icon {
+  width: 18px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.note-detail-actions {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  gap: 24px;
+}

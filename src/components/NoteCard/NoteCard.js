@@ -23,12 +23,12 @@ const NoteCard = ({ id, title, subtitle, content }) => {
             onClick={handleClickDelete}
           >
             <img
-              className="icon-trash-grey"
+              className="icon icon-trash-grey"
               src={trashGrey}
               alt={t('note-card.alt-trash-grey')}
             />
             <img
-              className="icon-trash-red"
+              className="icon icon-trash-red"
               src={trashRed}
               alt={t('note-card.alt-trash-red')}
             />

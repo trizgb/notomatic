@@ -12,8 +12,8 @@ const Home = () => {
   }, [dispatch])
 
   return (
-    <section className="section-wrapper">
-      <NotesList notes={notes} />
+    <section className="section-wrapper" aria-label="Home section">
+      <NotesList notes={notes.length ? notes : []} />
     </section>
   )
 }
