@@ -5,10 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchById } from '../redux/notesSlice'
 import { updateNote } from 'api'
 import { Form } from 'components/Form'
+import { Actions } from 'components/Actions'
 import { TextField } from 'components/TextField'
 import { TextArea } from 'components/TextArea'
-import trashBlack from '../assets/icons/trash-black.png'
-import pencil from '../assets/icons/pencil.png'
 import notFoundSvg from '../assets/svg/error-404.svg'
 
 const NoteDetail = () => {
@@ -91,24 +90,10 @@ const NoteDetail = () => {
             titleError !== ''
           }
         >
-          <div className="flex-container note-detail-actions">
-            {!isEditModeActive && (
-              <button onClick={() => setIsEditModeActive(true)}>
-                <img
-                  className="icon icon-pencil"
-                  src={pencil}
-                  alt={t('note-detail.alt-pencil')}
-                />
-              </button>
-            )}
-            <button onClick={() => console.log('delete')}>
-              <img
-                className="icon icon-trash-black"
-                src={trashBlack}
-                alt={t('note-detail.alt-trash-black')}
-              />
-            </button>
-          </div>
+          <Actions
+            onEdit={!isEditModeActive ? () => setIsEditModeActive(true) : null}
+            onDelete={() => console.log('Delete')}
+          />
           {!isEditModeActive && <p>{note.content}</p>}
           {isEditModeActive && (
             <>
