@@ -22,7 +22,7 @@ const Actions = ({ onEdit, onDelete }) => {
   }
 
   return (
-    <div className="actions">
+    <div className="note-detail-actions">
       {onEdit && (
         <button onClick={handleEdit} aria-label="Edit note">
           <img
