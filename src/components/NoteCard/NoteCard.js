@@ -1,5 +1,7 @@
 import Proptypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteById, fetchAll } from '../../redux/notesSlice'
 import trashGrey from '../../assets/icons/trash-grey.png'
 import trashRed from '../../assets/icons/trash-red.png'
 
@@ -7,10 +9,19 @@ import './NoteCard.css'
 
 const NoteCard = ({ id, title, subtitle, content }) => {
   const { t } = useTranslation('translation')
+  const dispatch = useDispatch()
+  const { error, loading } = useSelector(state => state.notes)
 
-  const handleClickDelete = e => {
+  const handleDelete = async e => {
     e.preventDefault()
-    alert(`Delete ${id}`)
+
+    if (window.confirm(t('common.delete-alert'))) {
+      await dispatch(deleteById({ id }))
+
+      if (!error || !loading) {
+        await dispatch(fetchAll())
+      }
+    }
   }
 
   return (
@@ -20,7 +31,7 @@ const NoteCard = ({ id, title, subtitle, content }) => {
           <button
             aria-label={t('note-card.aria-delete-button')}
             className="button-delete"
-            onClick={handleClickDelete}
+            onClick={handleDelete}
           >
             <img
               className="icon icon-trash-grey"

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchById } from '../redux/notesSlice'
+import { deleteById, fetchById } from '../redux/notesSlice'
 import { updateNote } from 'api'
-import { isValidContent, isValidTitle, validate } from 'utils/formValidation'
+import { isValidContent, isValidTitle } from 'utils/formValidation'
 import { Form } from 'components/Form'
 import { Actions } from 'components/Actions'
 import { TextField } from 'components/TextField'
@@ -16,7 +16,7 @@ const NoteDetail = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { data: note, error } = useSelector(state => state.notes)
+  const { data: note, error, loading } = useSelector(state => state.notes)
 
   const [isEditModeActive, setIsEditModeActive] = useState(false)
   const [title, setTitle] = useState('')
@@ -33,6 +33,16 @@ const NoteDetail = () => {
         }
       })
       .finally(() => navigate('/'))
+  }
+
+  const handleDelete = async () => {
+    if (window.confirm(t('common.delete-alert'))) {
+      await dispatch(deleteById({ id }))
+
+      if (!error || !loading) {
+        return navigate('/')
+      }
+    }
   }
 
   useEffect(() => {
@@ -65,7 +75,7 @@ const NoteDetail = () => {
         >
           <Actions
             onEdit={!isEditModeActive ? () => setIsEditModeActive(true) : null}
-            onDelete={() => console.log('Delete')}
+            onDelete={handleDelete}
           />
           {!isEditModeActive && <p>{note.content}</p>}
           {isEditModeActive && (
