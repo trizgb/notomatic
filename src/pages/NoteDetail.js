@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchById } from '../redux/notesSlice'
 import { updateNote } from 'api'
+import { isValidContent, isValidTitle, validate } from 'utils/formValidation'
 import { Form } from 'components/Form'
 import { Actions } from 'components/Actions'
 import { TextField } from 'components/TextField'
@@ -22,34 +23,6 @@ const NoteDetail = () => {
   const [content, setContent] = useState('')
   const [titleError, setTitleError] = useState('')
   const [contentError, setContentError] = useState('')
-
-  const validate = () => {
-    if (title) {
-      if (title.length < 3) {
-        setTitleError('form.textfield-error-min-chars')
-      } else if (title.length >= 3 && title.length < 20) {
-        setTitleError('')
-      } else if (title.length > 20) {
-        setTitleError('form.textfield-error-max-chars')
-      }
-    }
-
-    if (content) {
-      if (content.length < 3) {
-        setContentError('form.textarea-error-min-chars')
-      } else setContentError('')
-    }
-  }
-
-  const handleChange = e => {
-    if (e.currentTarget.name === 'title') {
-      setTitle(e.currentTarget.value)
-    }
-
-    if (e.currentTarget.name === 'content') {
-      setContent(e.currentTarget.value)
-    }
-  }
 
   const handleSubmit = async () => {
     return await updateNote({ id, title, content })
@@ -72,8 +45,8 @@ const NoteDetail = () => {
   }, [note])
 
   useEffect(() => {
-    validate()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setTitleError(isValidTitle(title)?.message)
+    setContentError(isValidContent(content)?.message)
   }, [title, content])
 
   return (
@@ -87,7 +60,7 @@ const NoteDetail = () => {
             title === '' ||
             content === '' ||
             titleError !== '' ||
-            titleError !== ''
+            contentError !== ''
           }
         >
           <Actions
@@ -101,14 +74,14 @@ const NoteDetail = () => {
                 label={t('form.textfield-label')}
                 name="title"
                 defaultValue={note.title}
-                onChange={handleChange}
+                onChange={e => setTitle(e.currentTarget.value)}
                 error={titleError !== '' ? t(titleError) : ''}
               />
               <TextArea
                 label={t('form.textarea-label')}
                 name="content"
                 defaultValue={note.content}
-                onChange={handleChange}
+                onChange={e => setContent(e.currentTarget.value)}
                 error={contentError !== '' ? t(contentError) : ''}
               />
             </>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { createNewNote } from 'api'
+import { isValidContent, isValidTitle } from 'utils/formValidation'
 import { Form } from 'components/Form'
 import { TextArea } from 'components/TextArea'
 import { TextField } from 'components/TextField'
@@ -14,34 +15,6 @@ const NoteCreate = () => {
   const [titleError, setTitleError] = useState('')
   const [contentError, setContentError] = useState('')
 
-  const validate = () => {
-    if (title) {
-      if (title.length < 3) {
-        setTitleError('form.textfield-error-min-chars')
-      } else if (title.length >= 3 && title.length < 20) {
-        setTitleError('')
-      } else if (title.length > 20) {
-        setTitleError('form.textfield-error-max-chars')
-      }
-    }
-
-    if (content) {
-      if (content.length < 3) {
-        setContentError('form.textarea-error-min-chars')
-      } else setContentError('')
-    }
-  }
-
-  const handleChange = e => {
-    if (e.currentTarget.name === 'title') {
-      setTitle(e.currentTarget.value)
-    }
-
-    if (e.currentTarget.name === 'content') {
-      setContent(e.currentTarget.value)
-    }
-  }
-
   const handleSubmit = async () => {
     return await createNewNote({
       title,
@@ -50,8 +23,8 @@ const NoteCreate = () => {
   }
 
   useEffect(() => {
-    validate()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setTitleError(isValidTitle(title)?.message)
+    setContentError(isValidContent(content)?.message)
   }, [title, content])
 
   return (
@@ -64,19 +37,19 @@ const NoteCreate = () => {
           title === '' ||
           content === '' ||
           titleError !== '' ||
-          titleError !== ''
+          contentError !== ''
         }
       >
         <TextField
           label={t('form.textfield-label')}
           name="title"
-          onChange={handleChange}
+          onChange={e => setTitle(e.currentTarget.value)}
           error={titleError !== '' ? t(titleError) : ''}
         />
         <TextArea
           label={t('form.textarea-label')}
           name="content"
-          onChange={handleChange}
+          onChange={e => setContent(e.currentTarget.value)}
           error={contentError !== '' ? t(contentError) : ''}
         />
       </Form>
