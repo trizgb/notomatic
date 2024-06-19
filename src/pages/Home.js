@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,18 +10,33 @@ const Home = () => {
   const { t } = useTranslation('translation')
   const dispatch = useDispatch()
   const { data: notes } = useSelector(state => state.notes)
+  const [searchInput, setSearchInput] = useState('')
+
+  const filteredNotes =
+    notes &&
+    notes.length &&
+    notes.filter(
+      note =>
+        note.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+        note.content.toLowerCase().includes(searchInput.toLowerCase()) ||
+        note.created_at.toString().includes(searchInput.toString()),
+    )
 
   useEffect(() => {
     dispatch(fetchAll())
   }, [dispatch])
 
+  console.log(filteredNotes)
   return (
     <>
-      <SearchBar />
+      <SearchBar onChange={e => setSearchInput(e.currentTarget.value)} />
       <section className="section-wrapper" aria-label="Home section">
-        {notes && notes.length ? (
-          <NotesList notes={notes} />
+        {filteredNotes && filteredNotes.length > 0 ? (
+          <NotesList notes={filteredNotes} />
         ) : (
+          ''
+        )}
+        {!filteredNotes && (
           <div className="flex-container">
             <p className="empty-list-message">
               <Trans
@@ -31,6 +46,11 @@ const Home = () => {
               />
             </p>
           </div>
+        )}
+        {searchInput !== '' && filteredNotes && filteredNotes.length === 0 ? (
+          <p>No hay match en la busqueda</p>
+        ) : (
+          ''
         )}
       </section>
     </>

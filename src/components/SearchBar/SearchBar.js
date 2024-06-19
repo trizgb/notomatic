@@ -12,11 +12,11 @@ const SearchBar = ({ onChange }) => {
     <div className="search-bar">
       <div className="search-bar-wrapper">
         <div className="search-bar-icon">
-          <img src={searchIcon} alt="" />
+          <img src={searchIcon} alt={t('common.search-alt-icon')} />
         </div>
         <input
           className="search-bar-input"
-          placeholder={t('search.placeholder')}
+          placeholder={t('common.search-placeholder')}
           onChange={onChange}
         />
       </div>
