@@ -60,7 +60,7 @@ const NoteDetail = () => {
   }, [title, content])
 
   return (
-    <section className="section-wrapper">
+    <section className="section-wrapper" aria-label="Detail section">
       {!error && note && (
         <Form
           title={!isEditModeActive ? note.title : t('note-detail.title')}
