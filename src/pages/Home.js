@@ -29,7 +29,10 @@ const Home = () => {
   console.log(filteredNotes)
   return (
     <>
-      <SearchBar onChange={e => setSearchInput(e.currentTarget.value)} />
+      <SearchBar
+        style={{ marginBottom: '56px' }}
+        onChange={e => setSearchInput(e.currentTarget.value)}
+      />
       <section className="section-wrapper" aria-label="Home section">
         {filteredNotes && filteredNotes.length > 0 ? (
           <NotesList notes={filteredNotes} />
@@ -48,7 +51,9 @@ const Home = () => {
           </div>
         )}
         {searchInput !== '' && filteredNotes && filteredNotes.length === 0 ? (
-          <p>No hay match en la busqueda</p>
+          <div className="flex-container">
+            <p>{t('common.search-empty')}</p>
+          </div>
         ) : (
           ''
         )}

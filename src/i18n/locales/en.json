@@ -34,7 +34,8 @@
       "delete-alert": "Delete this note?",
       "empty-list": "You don't have any note, do you want to <0>create one</0>?",
       "search-placeholder": "Search your notes...",
-      "search-alt-icon": "Search notes"
+      "search-alt-icon": "Search notes",
+      "search-empty": "There are no results that match your search"
     }
   }
 }

@@ -5,14 +5,18 @@ import searchIcon from '../../assets/icons/pencil.png'
 
 import './SearchBar.css'
 
-const SearchBar = ({ onChange }) => {
+const SearchBar = ({ style, onChange }) => {
   const { t } = useTranslation(['translation'])
 
   return (
-    <div className="search-bar">
+    <div className="search-bar" style={style}>
       <div className="search-bar-wrapper">
         <div className="search-bar-icon">
-          <img src={searchIcon} alt={t('common.search-alt-icon')} />
+          <img
+            className="icon icon-search"
+            src={searchIcon}
+            alt={t('common.search-alt-icon')}
+          />
         </div>
         <input
           className="search-bar-input"
@@ -25,7 +29,8 @@ const SearchBar = ({ onChange }) => {
 }
 
 SearchBar.propTypes = {
-  onChange: Proptypes.func,
+  style: Proptypes.object,
+  onChange: Proptypes.func.isRequired,
 }
 
 export default SearchBar

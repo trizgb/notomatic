@@ -17,10 +17,6 @@
   transform: translateY(-50%);
 }
 
-.search-bar-icon img {
-  width: 24px;
-}
-
 .search-bar-input {
   border: 2px solid transparent;
   outline: none;
