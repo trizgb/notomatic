@@ -1,46 +1,91 @@
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchById } from '../redux/notesSlice'
+import { updateNote } from 'api'
+import { isValidContent, isValidTitle, validate } from 'utils/formValidation'
 import { Form } from 'components/Form'
-
-import trashBlack from '../assets/icons/trash-black.png'
-import pencil from '../assets/icons/pencil.png'
+import { Actions } from 'components/Actions'
+import { TextField } from 'components/TextField'
+import { TextArea } from 'components/TextArea'
 import notFoundSvg from '../assets/svg/error-404.svg'
 
 const NoteDetail = () => {
   const { id } = useParams()
   const { t } = useTranslation('translation')
-
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { data: note, error } = useSelector(state => state.notes)
+
+  const [isEditModeActive, setIsEditModeActive] = useState(false)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [titleError, setTitleError] = useState('')
+  const [contentError, setContentError] = useState('')
+
+  const handleSubmit = async () => {
+    return await updateNote({ id, title, content })
+      .then(response => {
+        if (response) {
+          setIsEditModeActive(false)
+          alert(t('note-detail.update-alert'))
+        }
+      })
+      .finally(() => navigate('/'))
+  }
 
   useEffect(() => {
     dispatch(fetchById({ id }))
   }, [dispatch, id])
 
+  useEffect(() => {
+    setTitle(note.title)
+    setContent(note.content)
+  }, [note])
+
+  useEffect(() => {
+    setTitleError(isValidTitle(title)?.message)
+    setContentError(isValidContent(content)?.message)
+  }, [title, content])
+
   return (
     <section className="section-wrapper">
       {!error && note && (
-        <Form title={note.title}>
-          <div className="flex-container note-detail-actions">
-            <button onClick={() => console.log('edit')}>
-              <img
-                className="icon icon-pencil"
-                src={pencil}
-                alt={t('note-detail.alt-pencil')}
+        <Form
+          title={!isEditModeActive ? note.title : t('note-detail.title')}
+          submitText={isEditModeActive ? t('form.submit-save') : null}
+          onSubmit={handleSubmit}
+          isSubmitDisabled={
+            title === '' ||
+            content === '' ||
+            titleError !== '' ||
+            contentError !== ''
+          }
+        >
+          <Actions
+            onEdit={!isEditModeActive ? () => setIsEditModeActive(true) : null}
+            onDelete={() => console.log('Delete')}
+          />
+          {!isEditModeActive && <p>{note.content}</p>}
+          {isEditModeActive && (
+            <>
+              <TextField
+                label={t('form.textfield-label')}
+                name="title"
+                defaultValue={note.title}
+                onChange={e => setTitle(e.currentTarget.value)}
+                error={titleError !== '' ? t(titleError) : ''}
               />
-            </button>
-            <button onClick={() => console.log('delete')}>
-              <img
-                className="icon icon-trash-black"
-                src={trashBlack}
-                alt={t('note-detail.alt-trash-black')}
+              <TextArea
+                label={t('form.textarea-label')}
+                name="content"
+                defaultValue={note.content}
+                onChange={e => setContent(e.currentTarget.value)}
+                error={contentError !== '' ? t(contentError) : ''}
               />
-            </button>
-          </div>
-          <p>{note.content}</p>
+            </>
+          )}
         </Form>
       )}
       {error && (

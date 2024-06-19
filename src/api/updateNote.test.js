@@ -1,8 +1,8 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import createNewNote from './createNewNote'
+import updateNote from './updateNote'
 
-describe('createNewNote', () => {
+describe('updateNote', () => {
   let mock
 
   beforeEach(() => {
@@ -13,20 +13,21 @@ describe('createNewNote', () => {
     mock.reset()
   })
 
-  it('should make a POST request to /notes with the correct data', async () => {
+  it('should make a PATCH request to /notes with the correct data', async () => {
     const noteData = {
+      id: '1',
       title: 'Test Title',
       content: 'Test Content',
     }
 
-    mock.onPost('http://localhost:3200/notes').reply(201, {
-      message: 'Note created',
+    mock.onPatch('http://localhost:3200/notes/1').reply(200, {
+      message: 'Note updated',
     })
 
-    await createNewNote(noteData)
+    await updateNote(noteData)
 
-    expect(mock.history.post[0].url).toBe('http://localhost:3200/notes')
-    expect(JSON.parse(mock.history.post[0].data)).toEqual({
+    expect(mock.history.patch[0].url).toBe('http://localhost:3200/notes/1')
+    expect(JSON.parse(mock.history.patch[0].data)).toEqual({
       title: 'Test Title',
       content: 'Test Content',
       created_at: new Date().toLocaleDateString('es-ES', {

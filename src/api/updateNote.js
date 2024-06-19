@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const createNewNote = ({ title, content }) => {
-  return axios.post('http://localhost:3200/notes', {
+const updateNote = async ({ id, title, content }) => {
+  const response = await axios.patch(`http://localhost:3200/notes/${id}`, {
     title,
     content,
     created_at: new Date().toLocaleDateString('es-ES', {
@@ -10,6 +10,8 @@ const createNewNote = ({ title, content }) => {
       day: '2-digit',
     }),
   })
+
+  return response.data
 }
 
-export default createNewNote
+export default updateNote

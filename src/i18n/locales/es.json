@@ -25,7 +25,9 @@
     },
     "note-detail": {
       "alt-pencil": "Editar nota",
-      "alt-trash-black": "Eliminar nota"
+      "alt-trash-black": "Eliminar nota",
+      "title": "Editar nota",
+      "update-alert": "La nota ha sido actualizada"
     },
     "common": {
       "alt-not-found": "Página no encontrada"
