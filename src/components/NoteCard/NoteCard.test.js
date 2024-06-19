@@ -1,14 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Provider } from 'react-redux'
-import store from '../../redux/store'
 import NoteCard from './NoteCard'
 
 describe('NoteCard', () => {
   it('renders', () => {
     render(
-      <Provider store={store}>
-        <NoteCard id="1" title="Note test" subtitle="10/10/10" content="Test" />
-      </Provider>,
+      <NoteCard id="1" title="Note test" subtitle="10/10/10" content="Test" />,
     )
 
     expect(screen.getByText('Note test')).toBeInTheDocument()
@@ -16,9 +12,7 @@ describe('NoteCard', () => {
 
   it('clicks delete button', () => {
     render(
-      <Provider store={store}>
-        <NoteCard id="1" title="Note test" subtitle="10/10/10" content="Test" />
-      </Provider>,
+      <NoteCard id="1" title="Note test" subtitle="10/10/10" content="Test" />,
     )
 
     const deleteButton = screen.getByRole('button', {
