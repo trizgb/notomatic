@@ -30,7 +30,9 @@
       "update-alert": "La nota ha sido actualizada"
     },
     "common": {
-      "alt-not-found": "Página no encontrada"
+      "alt-not-found": "Página no encontrada",
+      "delete-alert": "¿Borrar esta nota?",
+      "empty-list": "No tienes ninguna nota, ¿te gustaría <0>crear una</0>?"
     }
   }
 }

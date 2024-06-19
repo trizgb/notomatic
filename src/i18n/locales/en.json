@@ -30,7 +30,9 @@
       "update-alert": "The note has been updated"
     },
     "common": {
-      "alt-not-found": "Page not found"
+      "alt-not-found": "Page not found",
+      "delete-alert": "Delete this note?",
+      "empty-list": "You don't have any note, do you want to <0>create one</0>?"
     }
   }
 }
