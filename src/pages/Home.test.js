@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import Home from './Home'
 import { Provider } from 'react-redux'
 import store from '../redux/store'
+import Home from './Home'
 
 describe('Home', () => {
   it('renders section tag', () => {
@@ -19,7 +19,7 @@ describe('Home', () => {
     ).toBeInTheDocument()
   })
 
-  it('renders notes list', () => {
+  it('renders message for empty list', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
@@ -28,7 +28,7 @@ describe('Home', () => {
       </Provider>,
     )
 
-    const list = screen.getByRole('list')
-    expect(list).toBeInTheDocument()
+    const emptyMessage = screen.getByRole('paragraph')
+    expect(emptyMessage).toBeInTheDocument()
   })
 })

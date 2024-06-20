@@ -1,5 +1,6 @@
 import Proptypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { useDeleteNote } from 'hooks'
 import trashGrey from '../../assets/icons/trash-grey.png'
 import trashRed from '../../assets/icons/trash-red.png'
 
@@ -7,10 +8,11 @@ import './NoteCard.css'
 
 const NoteCard = ({ id, title, subtitle, content }) => {
   const { t } = useTranslation('translation')
+  const deleteNoteHook = useDeleteNote({ id })
 
-  const handleClickDelete = e => {
+  const handleDelete = async e => {
     e.preventDefault()
-    alert(`Delete ${id}`)
+    deleteNoteHook()
   }
 
   return (
@@ -20,7 +22,7 @@ const NoteCard = ({ id, title, subtitle, content }) => {
           <button
             aria-label={t('note-card.aria-delete-button')}
             className="button-delete"
-            onClick={handleClickDelete}
+            onClick={handleDelete}
           >
             <img
               className="icon icon-trash-grey"

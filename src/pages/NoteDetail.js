@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchById } from '../redux/notesSlice'
 import { updateNote } from 'api'
-import { isValidContent, isValidTitle, validate } from 'utils/formValidation'
+import { useDeleteNote } from 'hooks'
+import { isValidContent, isValidTitle } from 'utils/formValidation'
 import { Form } from 'components/Form'
 import { Actions } from 'components/Actions'
 import { TextField } from 'components/TextField'
@@ -17,6 +18,7 @@ const NoteDetail = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data: note, error } = useSelector(state => state.notes)
+  const deleteNoteHook = useDeleteNote({ id, navigateUrl: '/' })
 
   const [isEditModeActive, setIsEditModeActive] = useState(false)
   const [title, setTitle] = useState('')
@@ -50,7 +52,7 @@ const NoteDetail = () => {
   }, [title, content])
 
   return (
-    <section className="section-wrapper">
+    <section className="section-wrapper" aria-label="Detail section">
       {!error && note && (
         <Form
           title={!isEditModeActive ? note.title : t('note-detail.title')}
@@ -65,7 +67,7 @@ const NoteDetail = () => {
         >
           <Actions
             onEdit={!isEditModeActive ? () => setIsEditModeActive(true) : null}
-            onDelete={() => console.log('Delete')}
+            onDelete={() => deleteNoteHook()}
           />
           {!isEditModeActive && <p>{note.content}</p>}
           {isEditModeActive && (
