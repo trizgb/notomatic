@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from '../../redux/store'
 import NotesList from './NotesList'
 
 describe('NotesList', () => {
@@ -14,9 +16,11 @@ describe('NotesList', () => {
 
   it('renders', () => {
     render(
-      <MemoryRouter>
-        <NotesList notes={notes} />
-      </MemoryRouter>,
+      <Provider store={store}>
+        <MemoryRouter>
+          <NotesList notes={notes} />
+        </MemoryRouter>
+      </Provider>,
     )
 
     expect(screen.getByText('Note test')).toBeInTheDocument()
