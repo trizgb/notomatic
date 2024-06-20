@@ -26,7 +26,6 @@ const Home = () => {
     dispatch(fetchAll())
   }, [dispatch])
 
-  console.log(filteredNotes)
   return (
     <>
       <SearchBar
