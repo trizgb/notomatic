@@ -18,4 +18,17 @@ describe('Home', () => {
       screen.getByRole('region', { name: 'Home section' }),
     ).toBeInTheDocument()
   })
+
+  it('renders message for empty list', () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Home />
+        </MemoryRouter>
+      </Provider>,
+    )
+
+    const emptyMessage = screen.getByRole('paragraph')
+    expect(emptyMessage).toBeInTheDocument()
+  })
 })
