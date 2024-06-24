@@ -15,12 +15,19 @@ const Home = () => {
   const filteredNotes =
     notes &&
     notes.length &&
-    notes.filter(
-      note =>
-        note.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-        note.content.toLowerCase().includes(searchInput.toLowerCase()) ||
-        note.created_at.toString().includes(searchInput.toString()),
-    )
+    notes
+      .filter(
+        note =>
+          note.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+          note.content.toLowerCase().includes(searchInput.toLowerCase()) ||
+          note.created_at.toString().includes(searchInput.toString()),
+      )
+      .sort((a, b) => {
+        const dateA = a.created_at
+        const dateB = b.created_at
+
+        return dateA > dateB ? 1 : -1
+      })
 
   useEffect(() => {
     dispatch(fetchAll())
@@ -33,11 +40,7 @@ const Home = () => {
         onChange={e => setSearchInput(e.currentTarget.value)}
       />
       <section className="section-wrapper" aria-label="Home section">
-        {filteredNotes && filteredNotes.length > 0 ? (
-          <NotesList notes={filteredNotes} />
-        ) : (
-          ''
-        )}
+        {filteredNotes?.length > 0 && <NotesList notes={filteredNotes} />}
         {!filteredNotes && (
           <div className="flex-container">
             <p className="empty-list-message">
@@ -49,12 +52,10 @@ const Home = () => {
             </p>
           </div>
         )}
-        {searchInput !== '' && filteredNotes && filteredNotes.length === 0 ? (
+        {searchInput !== '' && filteredNotes?.length === 0 && (
           <div className="flex-container">
             <p>{t('common.search-empty')}</p>
           </div>
-        ) : (
-          ''
         )}
       </section>
     </>

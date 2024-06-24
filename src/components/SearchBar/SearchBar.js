@@ -1,7 +1,7 @@
 import Proptypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
-import searchIcon from '../../assets/icons/pencil.png'
+import searchIcon from '../../assets/icons/search.png'
 
 import './SearchBar.css'
 
