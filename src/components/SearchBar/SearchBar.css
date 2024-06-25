@@ -1,0 +1,33 @@
+.search-bar {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar-wrapper {
+  position: relative;
+}
+
+.search-bar-icon {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+}
+
+.search-bar-input {
+  border: 2px solid transparent;
+  outline: none;
+  padding: 12px 16px 12px 48px;
+
+  caret-color: var(--notoBlue);
+
+  border-radius: 24px;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
+
+  &:focus {
+    border: 2px solid var(--notoBlue);
+  }
+}

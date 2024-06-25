@@ -32,7 +32,10 @@
     "common": {
       "alt-not-found": "Página no encontrada",
       "delete-alert": "¿Borrar esta nota?",
-      "empty-list": "No tienes ninguna nota, ¿te gustaría <0>crear una</0>?"
+      "empty-list": "No tienes ninguna nota, ¿te gustaría <0>crear una</0>?",
+      "search-placeholder": "Busca tus notas...",
+      "search-alt-icon": "Buscar notas",
+      "search-empty": "No hay resultados que coincidan con tu búsqueda"
     }
   }
 }
